@@ -1,0 +1,25 @@
+name: CQC Bazaar Query
+
+on:
+  push:
+    branches:
+      - ops/mcpvault-submit-eww-2026-09-12
+
+permissions:
+  contents: read
+
+jobs:
+  query:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Query public Coinbase Bazaar APIs
+        shell: bash
+        run: |
+          set -euo pipefail
+          base='https://api.cdp.coinbase.com/platform/v2/x402/discovery'
+          echo '=== search: CQC ==='
+          curl --silent --show-error --fail-with-body "$base/search?query=CQC" | head -c 20000
+          echo
+          echo '=== merchant ==='
+          curl --silent --show-error --fail-with-body "$base/merchant?payTo=0xDAAef0FD525278aAD0bA11066A96c338642A3d1A" | head -c 20000
+          echo
