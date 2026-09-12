@@ -1,0 +1,39 @@
+name: CQC x402 Production Probe
+
+on:
+  push:
+    branches:
+      - ops/mcpvault-submit-eww-2026-09-12
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Probe unpaid CQC x402 routes
+        shell: bash
+        run: |
+          set -euo pipefail
+          probe() {
+            local url="$1"
+            local data="$2"
+            local body headers status
+            body="$(mktemp)"; headers="$(mktemp)"
+            status="$(curl --silent --show-error --output "$body" --dump-header "$headers" --write-out '%{http_code}' \
+              --request POST "$url" \
+              --header 'Content-Type: application/json' \
+              --header 'User-Agent: cqc-production-smoke/directory-check' \
+              --header 'x-mcp-commercial-actor: owned_ci' \
+              --data "$data")"
+            echo "URL: $url"
+            echo "HTTP: $status"
+            grep -Ei '^(payment-required|x-payment|required|content-type|x402|www-authenticate):' "$headers" || true
+            echo "BODY_PREVIEW:"
+            head -c 1000 "$body" || true
+            echo
+            echo '---'
+          }
+          probe 'https://cqc-provider-mcp-production.up.railway.app/api/v1/registration-scope-preflight' '{"country":"England","service_type":"home_care","provides_personal_care":true,"scope_facts_complete":true}'
+          probe 'https://cqc-provider-mcp-production.up.railway.app/api/v1/statutory-notification-preflight' '{"notification_type":"service_disruption","facts_complete":true,"cannot_meet_assessed_needs_safely":false,"safety_system_failure_hours":26}'
