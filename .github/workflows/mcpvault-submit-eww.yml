@@ -1,0 +1,31 @@
+name: MCPVault Submit EWW
+
+on:
+  push:
+    branches:
+      - ops/mcpvault-submit-eww-2026-09-12
+
+permissions:
+  contents: read
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Submit England Works Watch to MCPVault
+        shell: bash
+        run: |
+          set -euo pipefail
+          response_file="$(mktemp)"
+          status="$(curl --silent --show-error --output "$response_file" --write-out '%{http_code}' \
+            --request POST 'https://mcpvault.io/api/mcp-submit' \
+            --header 'Content-Type: application/json' \
+            --header 'User-Agent: ProjectPermit-directory-submission/1.0' \
+            --data '{"repo_url":"https://github.com/ChanghuLiu/england-works-watch"}')"
+          echo "HTTP $status"
+          cat "$response_file"
+          echo
+          case "$status" in
+            200|201) exit 0 ;;
+            *) exit 1 ;;
+          esac
