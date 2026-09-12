@@ -1,0 +1,29 @@
+name: Submit MCP endpoints to mcpub
+
+on:
+  push:
+    branches:
+      - automation/mcpub-submit-2026-09-12
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Submit four remote MCP servers
+        shell: bash
+        run: |
+          set -euo pipefail
+          submit() {
+            local url="$1"
+            local description="$2"
+            echo "Submitting $url"
+            curl --fail-with-body --silent --show-error \
+              -X POST https://mcpub.dev/mcp \
+              -H 'Content-Type: application/json' \
+              -d "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"tools/call\",\"params\":{\"name\":\"submit\",\"arguments\":{\"url\":\"${url}\",\"description\":\"${description}\"}}}"
+            echo
+          }
+          submit 'https://england-works-watch-production.up.railway.app' 'UK Skilled Worker sponsor-compliance change intelligence and deterministic impact preflight for employer, HR and HRIS agents.'
+          submit 'https://cqc-provider-mcp-production.up.railway.app' 'Deterministic CQC provider regulatory decision support and preflight for health and social care provider agents.'
+          submit 'https://uk-taxi-phv-mcp-production.up.railway.app' 'UK taxi and private-hire licensing regulatory decision layer and deterministic preflight for transport and operator agents.'
+          submit 'https://uk-premises-licence-mcp-production.up.railway.app' 'UK premises licensing preflight and regulatory decision support for licensing and compliance agents.'
