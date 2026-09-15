@@ -618,6 +618,10 @@ Entries with a [Glama connector](https://glama.ai/mcp/connectors) badge have bee
   [![LibreJustice MCP connector](https://glama.ai/mcp/connectors/fr.librejustice/librejustice/badges/score.svg)](https://glama.ai/mcp/connectors/fr.librejustice/librejustice)
   🔐 - French and European case law and legislation, searched in plain language and linked article by article.
 
+- [UK Taxi PHV Regulatory Decision Layer](https://uk-taxi-phv-mcp-production.up.railway.app/openapi.json) `https://uk-taxi-phv-mcp-production.up.railway.app/mcp`
+  [![UK Taxi PHV Regulatory Decision Layer MCP connector](https://glama.ai/mcp/connectors/io.github.ChanghuLiu/uk-taxi-phv-regulatory-decision-layer/badges/score.svg)](https://glama.ai/mcp/connectors/io.github.ChanghuLiu/uk-taxi-phv-regulatory-decision-layer)
+  🔓 - England taxi/PHV licensing preflight and cross-authority comparison with official-source evidence.
+
 ### 🎯 <a name="marketing"></a>Marketing
 
 - [AfterLaunch](https://afterlaunch.io) `https://afterlaunch.io/api/mcp`
