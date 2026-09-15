@@ -1,0 +1,37 @@
+name: Apply single UK Taxi PHV entry
+
+on:
+  push:
+    branches: [add-uk-taxi-phv-regulatory-decision-layer]
+    paths: ['.github/workflows/apply-taxi-entry.yml']
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: add-uk-taxi-phv-regulatory-decision-layer
+      - name: Add UK Taxi PHV entry and remove temporary workflow
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('README.md')
+          s=p.read_text()
+          entry='''- [UK Taxi PHV Regulatory Decision Layer](https://uk-taxi-phv-mcp-production.up.railway.app/openapi.json) `https://uk-taxi-phv-mcp-production.up.railway.app/mcp`\n  [![UK Taxi PHV Regulatory Decision Layer MCP connector](https://glama.ai/mcp/connectors/io.github.ChanghuLiu/uk-taxi-phv-regulatory-decision-layer/badges/score.svg)](https://glama.ai/mcp/connectors/io.github.ChanghuLiu/uk-taxi-phv-regulatory-decision-layer)\n  🔓 - England taxi/PHV licensing preflight and cross-authority comparison with official-source evidence.\n'''
+          if 'UK Taxi PHV Regulatory Decision Layer' not in s:
+              marker='\n### 🎯 <a name="marketing"></a>Marketing'
+              assert marker in s
+              s=s.replace(marker, '\n'+entry+marker, 1)
+              p.write_text(s)
+          Path('.github/workflows/apply-taxi-entry.yml').unlink()
+          PY
+          git config user.name 'ChanghuLiu'
+          git config user.email '122949289+ChanghuLiu@users.noreply.github.com'
+          git add README.md .github/workflows/apply-taxi-entry.yml
+          git commit -m 'Add UK Taxi PHV Regulatory Decision Layer'
+          git push origin HEAD:add-uk-taxi-phv-regulatory-decision-layer
