@@ -614,6 +614,9 @@ Entries with a [Glama connector](https://glama.ai/mcp/connectors) badge have bee
 
 ### ⚖️ <a name="legal"></a>Legal
 
+- [England Works Watch](https://england-works-watch-production.up.railway.app/openapi.json) `https://england-works-watch-production.up.railway.app/mcp`
+  [![England Works Watch MCP connector](https://glama.ai/mcp/connectors/io.github.ChanghuLiu/england-works-watch/badges/score.svg)](https://glama.ai/mcp/connectors/io.github.ChanghuLiu/england-works-watch)
+  🔓 - Evidence-backed Skilled Worker sponsor change-impact decisions for England.
 - [LibreJustice](https://librejustice.fr) `https://librejustice.fr/mcp`
   [![LibreJustice MCP connector](https://glama.ai/mcp/connectors/fr.librejustice/librejustice/badges/score.svg)](https://glama.ai/mcp/connectors/fr.librejustice/librejustice)
   🔐 - French and European case law and legislation, searched in plain language and linked article by article.
