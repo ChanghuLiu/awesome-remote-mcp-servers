@@ -618,6 +618,10 @@ Entries with a [Glama connector](https://glama.ai/mcp/connectors) badge have bee
   [![LibreJustice MCP connector](https://glama.ai/mcp/connectors/fr.librejustice/librejustice/badges/score.svg)](https://glama.ai/mcp/connectors/fr.librejustice/librejustice)
   🔐 - French and European case law and legislation, searched in plain language and linked article by article.
 
+- [UK Premises Licence Preflight](https://uk-premises-licence-mcp-production.up.railway.app/openapi.json) `https://uk-premises-licence-mcp-production.up.railway.app/mcp`
+  [![UK Premises Licence Preflight MCP connector](https://glama.ai/mcp/connectors/io.github.ChanghuLiu/uk-premises-licence-mcp/badges/score.svg)](https://glama.ai/mcp/connectors/io.github.ChanghuLiu/uk-premises-licence-mcp)
+  🔓 - UK premises-licensing preflight across 10 authorities with evidence guards and x402 decisions.
+
 ### 🎯 <a name="marketing"></a>Marketing
 
 - [AfterLaunch](https://afterlaunch.io) `https://afterlaunch.io/api/mcp`
