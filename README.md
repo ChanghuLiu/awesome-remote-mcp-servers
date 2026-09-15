@@ -614,6 +614,9 @@ Entries with a [Glama connector](https://glama.ai/mcp/connectors) badge have bee
 
 ### ⚖️ <a name="legal"></a>Legal
 
+- [CQC Provider Regulatory Decision Layer](https://cqc-provider-mcp-production.up.railway.app/openapi.json) `https://cqc-provider-mcp-production.up.railway.app/mcp`
+  [![CQC Provider Regulatory Decision Layer MCP connector](https://glama.ai/mcp/connectors/io.github.ChanghuLiu/cqc-provider-regulatory-decision-layer/badges/score.svg)](https://glama.ai/mcp/connectors/io.github.ChanghuLiu/cqc-provider-regulatory-decision-layer)
+  🔓 - CQC registration, provider-change and notification preflight decisions for England with official evidence.
 - [LibreJustice](https://librejustice.fr) `https://librejustice.fr/mcp`
   [![LibreJustice MCP connector](https://glama.ai/mcp/connectors/fr.librejustice/librejustice/badges/score.svg)](https://glama.ai/mcp/connectors/fr.librejustice/librejustice)
   🔐 - French and European case law and legislation, searched in plain language and linked article by article.
